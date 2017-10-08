@@ -1,13 +1,15 @@
 package code;
 import java.util.Random;
 import java.util.Scanner;
+
+/**
+ * User interface for a menu and ordering system,
+ * using console interface.
+ * You can delete your order or add by delete its quantity:)
+ * @author Korawit Rupanya
+ */
 	public class skeRestaurant {
-		/**
-		  * User interface for a menu and ordering system,
-		  * using console interface.
-		  * You can delete your order or add by delete its quantity:)
-		  * @author Korawit Rupanya
-		  */
+	
 	static Scanner my = new Scanner(System.in);
 	static double tt = 0;
 	public final static String[] menuItems = { "Pizza", "Chickens", "Coke" };
