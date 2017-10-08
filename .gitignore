@@ -3,4 +3,4 @@ bin/
 .classpath
 .project
 .settings/org.eclipse.jdt.core.prefs
-bin/code/skeRestaurant.class
+.bin/code/skeRestaurant.class
