@@ -1,22 +1,25 @@
 package code;
+
 import java.util.Random;
 import java.util.Scanner;
 
 /**
- * User interface for a menu and ordering system,
- * using console interface.
- * You can delete your order or add by delete its quantity:)
+ * User interface for a menu and ordering system, using console interface. You
+ * can delete your order or add by delete its quantity:)
+ * 
  * @author Korawit Rupanya
  */
-	public class skeRestaurant {
-	
+
+public class skeRestaurant {
+
+	static RestaurantManager theManager = new RestaurantManager();
 	static Scanner my = new Scanner(System.in);
 	static double tt = 0;
 	public final static String[] menuItems = { "Pizza", "Chickens", "Coke" };
 	private static final double[] unitPrice = { 250.0, 120.0, 45.0 };
 	static double[] order = { 0, 0, 0 };
 
-			//this method print receipt with discount for membership
+	// this method print receipt with discount for membership
 	public static void receiptwithmember() {
 		tt = unitPrice[0] * order[0] + unitPrice[1] * order[1] + unitPrice[2] * order[2];
 		System.out.println("+------------Here is you receipt---------+");
@@ -35,8 +38,8 @@ import java.util.Scanner;
 		System.out.printf("| Total\t\t             |    %.2f |\n", (tt) * 0.9);
 		System.out.println("*------------------+---------+-----------*");
 	}
-            
-			//this method print total for check total prices
+
+	// this method print total for check total prices
 	public static void total() {
 		System.out.println("+------ Menu -----+-- Qty --+-- Price ---+");
 		tt = unitPrice[0] * order[0] + unitPrice[1] * order[1] + unitPrice[2] * order[2];
@@ -54,7 +57,7 @@ import java.util.Scanner;
 		System.out.println("*------------------+---------+-----------*");
 	}
 
-			//this method print the special Ske promotion
+	// this method print the special Ske promotion
 	public static void SKEpromotion(int num1) {
 		Random rand = new Random();
 		int ran1 = rand.nextInt(3) + 1;
@@ -72,7 +75,7 @@ import java.util.Scanner;
 		}
 	}
 
-			//this method print menu
+	// this method print menu
 	public static void intro() {
 		System.out.println("--------- Welcome to SKE Restaurant ---------");
 		System.out.printf("1.%s\t\t  %.2f Baht.%n", menuItems[0], unitPrice[0]);
@@ -83,8 +86,8 @@ import java.util.Scanner;
 		System.out.println("6.The SKE promotion (Try this after you have already done your order.)");
 		System.out.println("7.Exit");
 	}
-			
-			//this method contains logic about how user choose choices
+
+	// this method contains logic about how user choose choices
 	public static void choices() {
 		while (true) {
 			System.out.print("Enter your Choice: ");
@@ -138,9 +141,9 @@ import java.util.Scanner;
 			}
 		}
 	}
-			
-	public static void main(String[] args){
-				intro();
-				choices();
-			}
-		}
+
+	public static void main(String[] args) {
+		intro();
+		choices();
+	}
+}
