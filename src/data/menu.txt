@@ -1,0 +1,5 @@
+Chicken 15
+Orange 10
+Pork 30
+Apple 30
+Banana 320
