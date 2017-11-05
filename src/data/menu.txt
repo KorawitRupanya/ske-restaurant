@@ -1,5 +1,6 @@
-Chicken 15
-Orange 10
-Pork 30
-Apple 30
-Banana 320
+# Menu; price
+
+Pizza; 250.00
+Chickens; 125.00
+Ice-Cream; 50.00
+
