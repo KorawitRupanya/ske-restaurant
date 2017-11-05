@@ -1,7 +1,9 @@
-package src.code;
+package code;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * User interface for a menu and ordering system, using console interface. You

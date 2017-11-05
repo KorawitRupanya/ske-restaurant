@@ -8,12 +8,13 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class RestaurantManager {
 
 	static ArrayList<String> names = new ArrayList<>();
 	static ArrayList<Double> prices = new ArrayList<>();
 
-	public static void findMenu() {
+	public void findMenu(String whereFile) {
 		String filename = "data/menu.txt";
 		ClassLoader loader = RestaurantManager.class.getClassLoader();
 		InputStream in = loader.getResourceAsStream(filename);
@@ -25,13 +26,13 @@ public class RestaurantManager {
 		Scanner sc = new Scanner(in);
 
 		while (sc.hasNextLine()) {
-			String line = sc.nextLine();
+			String line = sc.nextLine().trim();
 
-			if (line.startsWith("#") || line.startsWith(" #") || line.equals("")) {
+			if (line.startsWith("#") ||line.equals("")) {
 				continue;
 			}
 
-			String[] array = line.split("; ");
+			String[] array = line.split(";");
 
 			names.add(array[0]);
 			prices.add(Double.parseDouble(array[1]));
@@ -39,13 +40,13 @@ public class RestaurantManager {
 		sc.close();
 	}
 
-	public static String[] getMenuItems() {
+	public String[] getMenuItems() {
 		ArrayList<String> listMenu = names;
 		String[] items = listMenu.toArray(new String[listMenu.size()]);
 		return items;
 	}
 
-	public static double[] getPrice() {
+	public double[] getPrices() {
 		ArrayList<Double> listPrice = prices;
 		double[] menuPrice = new double[listPrice.size()];
 		for (int i = 0; i < menuPrice.length; i++) {
@@ -54,11 +55,11 @@ public class RestaurantManager {
 		return menuPrice;
 	}
 
-	public static void recordOrder(int orderNumber, int[] order, double total) {
+	public void recordOrder(int orderNumber, int[] order, double total) {
 
 	}
 
-	static void setMenu(String filename) {
+	public void setMenu(String filename) {
 		String outputfile = "menu.txt";
 		OutputStream out = null;
 		try {
@@ -71,8 +72,8 @@ public class RestaurantManager {
 		pout.close();
 	}
 
-	static void init() {
+	public void init() {
 		String whereFile = "src/data/menu.txt";
-		setMenu(whereFile);
+		findMenu(whereFile);
 	}
 }
