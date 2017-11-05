@@ -40,13 +40,13 @@ public class RestaurantManager {
 		sc.close();
 	}
 
-	public String[] getMenuItems() {
+	public static String[] getMenuItems() {
 		ArrayList<String> listMenu = names;
 		String[] items = listMenu.toArray(new String[listMenu.size()]);
 		return items;
 	}
 
-	public double[] getPrices() {
+	public static double[] getPrices() {
 		ArrayList<Double> listPrice = prices;
 		double[] menuPrice = new double[listPrice.size()];
 		for (int i = 0; i < menuPrice.length; i++) {

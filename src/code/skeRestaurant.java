@@ -17,8 +17,8 @@ public class SkeRestaurant {
 	static RestaurantManager theManager = new RestaurantManager();
 	static Scanner my = new Scanner(System.in);
 	static int quantity = 0;
-	static String[] menuItems = { "Pizza", "Chickens", "Coke" };
-	static double[] unitPrice = { 250.0, 120.0, 45.0 };
+	static String[] menuItems = RestaurantManager.getMenuItems();
+	static double[] unitPrice = RestaurantManager.getPrices();
 	static double[] totalQuantity = new double[menuItems.length];
 	static double[] price = new double[menuItems.length];
 
