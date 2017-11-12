@@ -2,6 +2,7 @@ package code;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -17,10 +18,10 @@ public class SkeRestaurant {
 	static RestaurantManager theManager = new RestaurantManager();
 	static Scanner my = new Scanner(System.in);
 	static int quantity = 0;
-	static String[] menuItems = RestaurantManager.getMenuItems();
-	static double[] unitPrice = RestaurantManager.getPrices();
-	static double[] totalQuantity = new double[menuItems.length];
-	static double[] price = new double[menuItems.length];
+	static String[] menuItems;
+	static double[] unitPrice;
+	static double[] totalQuantity;
+	static double[] price;
 
 	public static void getPrice(int quan) {
 		quantity = my.nextInt();
@@ -91,6 +92,8 @@ public class SkeRestaurant {
 
 	// this method print menu
 	public static void intro() {
+		menuItems = RestaurantManager.getMenuItems();
+		unitPrice = RestaurantManager.getPrices();
 		System.out.println("--------- Welcome to SKE Restaurant ---------");
 		for (int x = 0; x < menuItems.length; x++) {
 			System.out.printf("%d. %s\t\t%.2f Baht.\n", x + 1, menuItems[x], unitPrice[x]);
@@ -148,7 +151,8 @@ public class SkeRestaurant {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		RestaurantManager.init();
 		intro();
 		choices();
 	}

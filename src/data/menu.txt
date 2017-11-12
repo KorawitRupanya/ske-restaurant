@@ -1,6 +1,6 @@
-# Menu; price
+# Menu;price
 
-Pizza; 250.00
-Chickens; 125.00
-Ice-Cream; 50.00
+Pizza;250.00
+Chickens;125.00
+Ice-Cream;50.00
 

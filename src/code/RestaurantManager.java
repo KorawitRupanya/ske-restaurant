@@ -1,7 +1,9 @@
 package code;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -14,7 +16,7 @@ public class RestaurantManager {
 	static ArrayList<String> names = new ArrayList<>();
 	static ArrayList<Double> prices = new ArrayList<>();
 
-	public void findMenu(String whereFile) {
+	public static void loadMenu() {
 		String filename = "data/menu.txt";
 		ClassLoader loader = RestaurantManager.class.getClassLoader();
 		InputStream in = loader.getResourceAsStream(filename);
@@ -59,11 +61,14 @@ public class RestaurantManager {
 
 	}
 
-	public void setMenu(String filename) {
-		String outputfile = "menu.txt";
-		OutputStream out = null;
+	public static void writeMenu(String towrite) throws IOException {
+		String outputfile = "src/data/receipt.txt";
+		File outt = new File(outputfile);
+		FileOutputStream out;
+		String something = towrite;
 		try {
-			out = new FileOutputStream(outputfile);
+			out = new FileOutputStream(outt);
+			out.write(something.getBytes());
 		} catch (FileNotFoundException ex) {
 			System.out.println("Couldn't open output file " + outputfile);
 			return;
@@ -72,8 +77,8 @@ public class RestaurantManager {
 		pout.close();
 	}
 
-	public void init() {
+	public static void init() {
 		String whereFile = "src/data/menu.txt";
-		findMenu(whereFile);
+		loadMenu();
 	}
 }
