@@ -78,7 +78,7 @@ public class SkeRestaurant {
 		System.out.printf("\nPress :\t[o]:To order");
 		System.out.println("\t(put ' - 'for reduce quantity)");
 		System.out.printf("\t[v]:To veiw order");
-		System.out.printf("\n\t[e]:To get reciept and Exit");
+		System.out.printf("\n\t[e]:To get receipt and Exit");
 		System.out.printf("\n\t[m]:To show menu");
 		System.out.printf("\n\t[p]:The SKE promotion (Try this after you have already done your order.)");
 		System.out.printf("\n\t[?]:To show this commands\n");
