@@ -10,12 +10,21 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class for manager to load menu,get menu items,get prices of items,record
+ * order,and write menu.
+ * 
+ * @author Korawit Rupanya
+ */
 
 public class RestaurantManager {
 
 	static ArrayList<String> names = new ArrayList<>();
 	static ArrayList<Double> prices = new ArrayList<>();
 
+	/**
+	 * Load the data from file and add those data to list.
+	 */
 	public static void loadMenu() {
 		String filename = "data/menu.txt";
 		ClassLoader loader = RestaurantManager.class.getClassLoader();
@@ -30,7 +39,7 @@ public class RestaurantManager {
 		while (sc.hasNextLine()) {
 			String line = sc.nextLine().trim();
 
-			if (line.startsWith("#") ||line.equals("")) {
+			if (line.startsWith("#") || line.equals("")) {
 				continue;
 			}
 
@@ -42,12 +51,20 @@ public class RestaurantManager {
 		sc.close();
 	}
 
+	/**
+	 * Get names of items then add them to array menuItems.
+	 * 
+	 */
 	public static String[] getMenuItems() {
 		ArrayList<String> listMenu = names;
 		String[] items = listMenu.toArray(new String[listMenu.size()]);
 		return items;
 	}
 
+	/**
+	 * Get prices of items then add them to array menuPrices.
+	 * 
+	 */
 	public static double[] getPrices() {
 		ArrayList<Double> listPrice = prices;
 		double[] menuPrice = new double[listPrice.size()];
@@ -57,28 +74,20 @@ public class RestaurantManager {
 		return menuPrice;
 	}
 
-	public void recordOrder(int orderNumber, int[] order, double total) {
-
-	}
-
-	public static void writeMenu(String towrite) throws IOException {
+	/*
+	 * Write the receipt.
+	 */
+	public static void writeReceipt(String dayTime, String allOrder) throws IOException {
 		String outputfile = "src/data/receipt.txt";
-		File outt = new File(outputfile);
+		File out1 = new File(outputfile);
 		FileOutputStream out;
-		String something = towrite;
 		try {
-			out = new FileOutputStream(outt);
-			out.write(something.getBytes());
+			out = new FileOutputStream(out1);
+			out.write(dayTime.getBytes());
+			out.write(allOrder.getBytes());
 		} catch (FileNotFoundException ex) {
-			System.out.println("Couldn't open output file " + outputfile);
+			System.out.println("Couldn't open output file " + out1);
 			return;
 		}
-		PrintStream pout = new PrintStream(out);
-		pout.close();
-	}
-
-	public static void init() {
-		String whereFile = "src/data/menu.txt";
-		loadMenu();
 	}
 }
