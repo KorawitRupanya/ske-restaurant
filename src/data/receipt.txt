@@ -1,3 +1,7 @@
+# date & time
+# menu, quantity @ price
+# Total
+
 18 Nov 2017, 00:48
 Pizza, 1 @ 250.0
 Total : 267.5
