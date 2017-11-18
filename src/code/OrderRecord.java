@@ -1,5 +1,12 @@
 package code;
 
+/**
+ * This is an object class that receive date and time,order,member status, and promotion status.
+ * 
+ * @author Korawit Rupanya
+ *
+ */
+
 public class OrderRecord {
 	private String dateTime;
 	private String allOrder;

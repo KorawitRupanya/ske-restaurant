@@ -1,7 +1,6 @@
 package code;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 import java.io.IOException;
@@ -37,8 +36,7 @@ public class SkeRestaurant {
 	static protected DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm");
 	static protected LocalDateTime now = LocalDateTime.now();
 
-	/*
-	 * Print menu.
+	/** Print menu.
 	 */
 	public static void intro() {
 		menuItems = RestaurantManager.getMenuItems();
@@ -88,8 +86,9 @@ public class SkeRestaurant {
 		System.out.printf("\n\t[?]:To show this commands\n");
 	}
 
-	/*
-	 * This is for a special SKE promotion.
+	/** This is for a special SKE promotion.
+	 * If the user can answer the question right,he will be taken to random phase.
+	 * If he is can answer the question correctly and lucky enough he might get a free meal.
 	 */
 	public static void SKEpromotion(int num1) {
 		double vat;
@@ -186,8 +185,7 @@ public class SkeRestaurant {
 		System.out.println("+----------------------------------------------+---------------+");
 	}
 
-	/*
-	 * Contains logic about how user choose choices.
+	/** Contains logic about how user choose choices.
 	 */
 	public static void choices() {
 		while (true) {
@@ -256,7 +254,10 @@ public class SkeRestaurant {
 			}
 		}
 	}
-
+	
+	/** Get data for writing receipt.
+	 * 
+	 */
 	public static String getData() {
 		String allOrder = "";
 		for (int k = 1; k <= result.length; k++) {

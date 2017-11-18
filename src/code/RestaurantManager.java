@@ -21,8 +21,7 @@ public class RestaurantManager {
 	static ArrayList<String> names = new ArrayList<>();
 	static ArrayList<Double> prices = new ArrayList<>();
 
-	/**
-	 * Load the data from file and add those data to list.
+	/** Load the data from file and add those data to list.
 	 */
 	public static void loadMenu() {
 		String filename = "data/menu.txt";
@@ -49,9 +48,7 @@ public class RestaurantManager {
 		sc.close();
 	}
 
-	/**
-	 * Get names of items then add them to array menuItems.
-	 * 
+	/** Get names of items then add them to array menuItems.
 	 */
 	public static String[] getMenuItems() {
 		ArrayList<String> listMenu = names;
@@ -59,9 +56,7 @@ public class RestaurantManager {
 		return items;
 	}
 
-	/**
-	 * Get prices of items then add them to array menuPrices.
-	 * 
+	/** Get prices of items then add them to array menuPrices.
 	 */
 	public static double[] getPrices() {
 		ArrayList<Double> listPrice = prices;
@@ -72,9 +67,9 @@ public class RestaurantManager {
 		return menuPrice;
 	}
 
-	/*
-	 * Write the receipt.
+	/** Write the receipt.
 	 */
+	@SuppressWarnings("resource")
 	public static void writeReceipt(ArrayList<Object> allOrder) throws IOException {
 		String outputfile = "src/data/receipt.txt";
 		File out1 = new File(outputfile);
