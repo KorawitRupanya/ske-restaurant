@@ -1,4 +1,4 @@
-18 Nov 2017, 16:14
+18 Nov 2017, 16:38
 Non-member , Non-promotion
 Pizza, 1 @ 250.0
 Chickens, 1 @ 125.0
@@ -7,7 +7,7 @@ Total : 454.75
 
 
 --------------------------------------
-18 Nov 2017, 16:14
+18 Nov 2017, 16:39
 Member , Non-promotion
 Pizza, 1 @ 250.0
 Chickens, 1 @ 125.0
@@ -16,39 +16,48 @@ Total : 412.25
 
 
 --------------------------------------
-18 Nov 2017, 16:15
-Non-member , Promotion(win)
-Pizza, 1 @ 250.0
-Chickens, 1 @ 125.0
-Ice-Cream, 1 @ 50.0
-Total : 0.0
-
-
---------------------------------------
-18 Nov 2017, 16:15
-Non-member , Promotion(win)
-Pizza, 1 @ 250.0
-Chickens, 1 @ 125.0
-Ice-Cream, 1 @ 50.0
-Total : 0.0
-
-
---------------------------------------
-18 Nov 2017, 16:16
-Non-member , Promotion(win)
-Pizza, 1 @ 250.0
-Chickens, 1 @ 125.0
-Ice-Cream, 1 @ 50.0
-Total : 0.0
-
-
---------------------------------------
-18 Nov 2017, 16:16
+18 Nov 2017, 16:39
 Non-member , Promotion(lose)
 Pizza, 1 @ 250.0
 Chickens, 1 @ 125.0
 Ice-Cream, 1 @ 50.0
 Total : 454.75
+
+
+--------------------------------------
+18 Nov 2017, 16:40
+Non-member , Promotion(lose)
+Pizza, 1 @ 250.0
+Chickens, 1 @ 125.0
+Ice-Cream, 1 @ 50.0
+Total : 454.75
+
+
+--------------------------------------
+18 Nov 2017, 16:40
+Non-member , Promotion(lose)
+Pizza, 1 @ 250.0
+Chickens, 1 @ 125.0
+Ice-Cream, 1 @ 50.0
+Total : 454.75
+
+
+--------------------------------------
+18 Nov 2017, 16:40
+Non-member , Promotion(lose)
+Pizza, 1 @ 250.0
+Chickens, 1 @ 125.0
+Ice-Cream, 1 @ 50.0
+Total : 454.75
+
+
+--------------------------------------
+18 Nov 2017, 16:41
+Non-member , Promotion(win)
+Pizza, 1 @ 250.0
+Chickens, 1 @ 125.0
+Ice-Cream, 1 @ 50.0
+Total : 0.0
 
 
 --------------------------------------
