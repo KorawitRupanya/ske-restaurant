@@ -1,5 +1,7 @@
 package code;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 import java.io.IOException;
@@ -16,11 +18,11 @@ public class SkeRestaurant {
 
 	static String[] menuItems = RestaurantManager.getMenuItems();
 	static double[] prices = RestaurantManager.getPrices();
+	static ArrayList<Object> allOrder = new ArrayList<Object>();
 
 	static Scanner my = new Scanner(System.in);
 	static int quantity = 0;
 	static double[] unitPrice;
-	static double[] totalQuantity;
 	static String day;
 	static int orderNumber;
 	static private String[] menu;
@@ -28,8 +30,10 @@ public class SkeRestaurant {
 	static int[] quantities;
 	static double[] result;
 	static double total;
-	static double total1;
 	static double subtotal = 0.00;
+	static String memberRecord;
+	static String promotion;
+	static String dT;
 	static protected DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm");
 	static protected LocalDateTime now = LocalDateTime.now();
 
@@ -92,23 +96,24 @@ public class SkeRestaurant {
 		Random rand = new Random();
 		int ran1 = rand.nextInt(3) + 1;
 		if (num1 == ran1) {
+			promotion = "Promotion(win)";
 			System.out.println("WOW!!! You are real SKE and and a real gambler too 555!!!");
 			System.out.println("+---------------------Here is you receipt----------------------+");
-
-			System.out.println("\nDate & Time : " + dtf.format(now));
+			now = LocalDateTime.now();
+			dT = dtf.format(now);
+			System.out.println("\nDate & Time : " + dT);
 			printOrder();
 
-			for (int c = 0; c < result.length; c++)
-				subtotal = subtotal + result[c];
+			subtotal = total;
 			vat = vat(subtotal);
 			total = subtotal + vat;
-			total1 = 0;
 
 			System.out.printf("|%-46s|%13.2f  |\n", " Subtotal :", subtotal);
 			System.out.printf("|%-46s|%13.2f  |\n", " VAT 7% :", vat);
 			System.out.printf("|%-46s|%13.2f  |\n", " Total :", total);
 			System.out.printf("|%-46s|%13.2f  |\n", " Discount from the promotion :", -total);
-			System.out.printf("|%-46s|%13.2f  |\n", " Total :", total1);
+			total = 0;
+			System.out.printf("|%-46s|%13.2f  |\n", " Total :", total);
 			System.out.println("+----------------------------------------------+---------------+");
 		} else {
 			System.out.println("Sorry...You miss it!");
@@ -125,16 +130,32 @@ public class SkeRestaurant {
 		double discount = (total * 10) / 100;
 		return discount;
 	}
+	
+	public static double[] getUnitTotal() {
+		for(int x = 0;x < menuItems.length;x++) {
+			result[x] = quantities[x]*prices[x];
+		}
+		return result;
+	}
+	
+	public static double getTotal() {
+		total = 0.0;
+		for(int x = 0;x < menuItems.length;x++) {
+			total += quantities[x]*prices[x];
+		}
+		return total;
+	}
 
 	public static void printReceipt() {
 		double vat;
 
 		System.out.println("+---------------------Here is you receipt----------------------+");
-		System.out.println("\nDate & Time : " + dtf.format(now));
+		now = LocalDateTime.now();
+		dT = dtf.format(now);
+		System.out.println("\nDate & Time : " + dT);
 		printOrder();
-
-		for (int c = 0; c < result.length; c++)
-			subtotal = subtotal + result[c];
+		
+		subtotal = total;
 		vat = vat(subtotal);
 		total = subtotal + vat;
 
@@ -148,11 +169,12 @@ public class SkeRestaurant {
 		double vat, discount;
 
 		System.out.println("+---------------------Here is you receipt----------------------+");
-		System.out.println("\nDate & Time : " + dtf.format(now));
+		now = LocalDateTime.now();
+		dT = dtf.format(now);
+		System.out.println("\nDate & Time : " + dT);
 		printOrder();
 
-		for (int c = 0; c < result.length; c++)
-			subtotal = subtotal + result[c];
+		subtotal = total;
 		vat = vat(subtotal);
 		discount = memberdiscount(subtotal);
 		total = (subtotal + vat) - discount;
@@ -168,9 +190,6 @@ public class SkeRestaurant {
 	 * Contains logic about how user choose choices.
 	 */
 	public static void choices() {
-		prices = RestaurantManager.getPrices();
-		quantities = new int[prices.length];
-		result = new double[prices.length];
 		while (true) {
 			System.out.print("Enter your command: ");
 			String choice = my.next();
@@ -185,23 +204,20 @@ public class SkeRestaurant {
 						if (orderNumber >= 1 && orderNumber <= prices.length) {
 							System.out.print("Enter Quantity: ");
 							quantity = my.nextInt();
-							for (int ch = 1; ch <= prices.length; ch++) {
-								if (orderNumber == ch) {
-									quantities[ch - 1] = quantities[ch - 1] + quantity;
-									if (quantities[ch - 1] < 0) {
-										quantities[ch - 1] = 0;
-									}
-									result[ch - 1] = quantities[ch - 1] * prices[ch - 1];
-								}
+							quantities[orderNumber - 1] +=quantity;
+							if (quantities[orderNumber - 1] < 0) {
+								quantities[orderNumber - 1] = 0;
 							}
+							result = getUnitTotal();
+							total = getTotal();
 						}
-					} else {
+					} 
+				else {
 						choice = my.next();
 						if (choice.equals("v")) {
 							printOrder();
 							break;
-						} else
-							break;
+						} else break;
 					}
 				}
 			}
@@ -212,6 +228,7 @@ public class SkeRestaurant {
 				System.out.print("Do you have member card Y/N?");
 				String member = my.next();
 				if (member.equals("Y")) {
+					memberRecord = "Member";
 					printReceiptwithMember();
 				} else if (member.equals("N")) {
 					printReceipt();
@@ -219,9 +236,10 @@ public class SkeRestaurant {
 				break;
 			}
 			if (choice.equals("p")) {
+				promotion = "Promotion(lose)";
 				System.out.println(
 						"If you can answer this question right,you will be taken to random phase.\nIf you are real SKE and lucky enough you might get a free meal!!!\nWhat is code name of java version J2SE 5.0 that was released on September 30, 2004.?");
-				System.out.println("Choice 1.CAT 2.TIGER 3.LION 4.CHHETAH 5.LEOPARD");
+				System.out.println("Choice 1.CAT 2.TIGER 3.LION 4.CHEETAH 5.LEOPARD");
 				System.out.print("Enter your answer:");
 				int answer = my.nextInt();
 				if (answer == 2) {
@@ -252,18 +270,33 @@ public class SkeRestaurant {
 		return allOrder;
 	}
 
-	public static void recordReceipt() throws IOException {
+	public static void recordReceipt() {
 		String receipt = getData();
-		String dateTime = dtf.format(now) + "\n";
-		RestaurantManager.writeReceipt(dateTime, receipt);
+		OrderRecord orderRecord = new OrderRecord(dT, receipt, memberRecord, promotion);
+		allOrder.add(orderRecord);
 	}
 
 	public static void main(String[] args) throws IOException {
+		String cha = "";
 		RestaurantManager.loadMenu();
-		intro();
-		printCommands();
-		choices();
-		getData();
-		recordReceipt();
+		do {
+			prices = RestaurantManager.getPrices();
+			quantities = new int[prices.length];
+			result = new double[prices.length];
+			dT = "";
+			memberRecord = "Non-member";
+			promotion = "Non-promotion";
+			subtotal = 0.0;
+			total = 0.0;
+			intro();
+			printCommands();
+			choices();
+			getData();
+			recordReceipt();
+			System.out.print("\n[M]ake new order or [Q]uit : ");
+			cha = my.next();
+			if(cha.equals("Q")) break;
+		}while(cha.equals("M"));
+		RestaurantManager.writeReceipt(allOrder);
 	}
 }

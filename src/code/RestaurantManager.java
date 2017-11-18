@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -38,16 +37,15 @@ public class RestaurantManager {
 
 		while (sc.hasNextLine()) {
 			String line = sc.nextLine().trim();
-
 			if (line.startsWith("#") || line.equals("")) {
 				continue;
 			}
-
 			String[] array = line.split(";");
 
 			names.add(array[0]);
 			prices.add(Double.parseDouble(array[1]));
 		}
+		
 		sc.close();
 	}
 
@@ -77,17 +75,28 @@ public class RestaurantManager {
 	/*
 	 * Write the receipt.
 	 */
-	public static void writeReceipt(String dayTime, String allOrder) throws IOException {
+	public static void writeReceipt(ArrayList<Object> allOrder) throws IOException {
 		String outputfile = "src/data/receipt.txt";
 		File out1 = new File(outputfile);
 		FileOutputStream out;
 		try {
 			out = new FileOutputStream(out1);
-			out.write(dayTime.getBytes());
-			out.write(allOrder.getBytes());
 		} catch (FileNotFoundException ex) {
 			System.out.println("Couldn't open output file " + out1);
 			return;
+		}
+		String receipt = "",dateTime = "",memberRec = "",promotionRec = "";
+		for(int x = 0;x < allOrder.size();x++) {
+			receipt = ((OrderRecord) allOrder.get(x)).getAllOrder();
+			dateTime = ((OrderRecord) allOrder.get(x)).getDateTime();
+			memberRec = ((OrderRecord) allOrder.get(x)).getMember();
+			promotionRec = ((OrderRecord) allOrder.get(x)).getPromotion();
+			
+			PrintStream pout = new PrintStream(out);
+			pout.println(dateTime);
+			pout.println(memberRec +" , "+ promotionRec);
+			pout.println(receipt);
+			pout.println("--------------------------------------");
 		}
 	}
 }
